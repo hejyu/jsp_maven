@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="tblcustom">
+
+ 	<select id="selectAll" resultType="CustomerDto">
+ 		SELECT custom_id, name, email, age, reg_date
+ 		FROM tbl_custom 
+ 		ORDER BY reg_date desc
+  	</select>
+ 	
+ 	<insert id="insert" parameterType="CustomerDto">
+ 		insert into tbl_custom(custom_id, name, email, age, reg_date) 
+ 		values(#{custom_id},#{name},#{email},#{age},sysdate)
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="java.util.Map">
+ 		update tbl_custom 
+ 			set email=#{email}, age=#{age}
+ 		WHERE custom_id= #{custom_id}
+ 	</update>
+ 	
+ 	<delete id="delete" parameterType="String">
+ 		delete tbl_custom WHERE custom_id = #{custom_id}
+ 	</delete>
+ 	
+ 	<select id="getCustomer" parameterType="String" resultType="CustomerDto">
+		select custom_id, name, email, age, reg_date
+        from tbl_custom
+        where custom_id = #{custom_id}
+ 	</select>
+ 	
+ 	<select id="selectCustomerByCustomId" parameterType="String" resultType="CustomerDto">
+		select custom_id, name, email, age, reg_date
+        from tbl_custom
+        where custom_id = #{custom_id}
+ 	</select>
+ 	
+ 	
+ 	<select id="selectByNameAge" parameterType="java.util.Map" resultType="CustomerDto">
+		select custom_id, name, email, age, reg_date
+		from tbl_custom 
+		where name = #{name} and age = #{age}
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ </mapper>
+ 
+ 
